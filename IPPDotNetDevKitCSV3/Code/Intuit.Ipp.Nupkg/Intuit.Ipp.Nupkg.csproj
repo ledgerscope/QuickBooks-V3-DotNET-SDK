@@ -23,7 +23,7 @@
     <RepositoryUrl>https://github.com/intuit/QuickBooks-V3-DotNET-SDK</RepositoryUrl>
 	<PackageIcon>logo.png</PackageIcon>  
     <PackageProjectUrl>https://developer.intuit.com/app/developer/qbo/docs/develop/sdks-and-samples-collections/net</PackageProjectUrl>
-    <PackageLicenseUrl>https://github.com/intuit/QuickBooks-V3-DotNET-SDK/blob/master/License.md</PackageLicenseUrl>
+    <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
     <RepositoryType>git</RepositoryType>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <PackageReleaseNotes>https://github.com/intuit/QuickBooks-V3-DotNET-SDK/releases</PackageReleaseNotes>
@@ -94,7 +94,7 @@
     <PackageReference Include="Serilog.Sinks.Debug" Version="2.0.0" />
     <PackageReference Include="Serilog.Sinks.Trace" Version="2.1.0" />
     <PackageReference Include="SerilogTraceListener" Version="3.2.0" />
-    
+
     <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="2.2.0" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="2.2.0" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Xml" Version="2.2.0" />
@@ -104,10 +104,6 @@
   
   <ItemGroup>
     <None Include="logo.png" Pack="true" PackagePath="" />
-  </ItemGroup>
-
-  <ItemGroup>
-  
   </ItemGroup>
 
   <Target Name="CopyProjectReferencesToPackage" DependsOnTargets="ResolveReferences">
