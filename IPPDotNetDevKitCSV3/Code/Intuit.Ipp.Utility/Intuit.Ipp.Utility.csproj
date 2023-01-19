@@ -27,7 +27,4 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup>
-    <PackageReference Update="Newtonsoft.Json" Version="13.0.1" />
-  </ItemGroup>
 </Project>

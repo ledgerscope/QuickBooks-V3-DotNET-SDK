@@ -25,7 +25,5 @@
     <PackageReference Include = "Serilog.Sinks.Trace" Version="2.1.0" />
     <PackageReference Include = "SerilogTraceListener" Version="3.2.0" />
   </ItemGroup>
-  <ItemGroup>
-    <PackageReference Update="Newtonsoft.Json" Version="13.0.1" />
-  </ItemGroup>
+  
 </Project>
