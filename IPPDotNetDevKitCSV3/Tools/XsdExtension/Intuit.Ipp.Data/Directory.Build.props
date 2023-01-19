@@ -30,7 +30,7 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)' == 'net461'">
-    <DefineConstants>NET461;NETFULL</DefineConstants>
+    <DefineConstants>net461;NETFULL</DefineConstants>
 
   </PropertyGroup>
 
