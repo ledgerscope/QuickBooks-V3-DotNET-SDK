@@ -171,8 +171,8 @@ namespace Intuit.Ipp.DataService
         /// Please refer online documentation more details.
         /// </example>
         /// <code>
-        /// QueryService<Customer> customerContext=new QueryService<Customer>(serviceContext);
-        /// string query = this.customerContext.Where(c => c.MiddleName.StartsWith("a") && c.FamilyName.EndsWith("z")).ToIdsQuery();
+        /// QueryService&lt;Customer&gt; customerContext=new QueryService&lt;Customer&gt;(serviceContext);
+        /// string query = this.customerContext.Where(c => c.MiddleName.StartsWith("a") &amp;&amp; c.FamilyName.EndsWith("z")).ToIdsQuery();
         /// </code>
         public void Add(string query, string id)
         {
@@ -191,8 +191,8 @@ namespace Intuit.Ipp.DataService
         /// Please refer online documentation more details.
         /// </example>
         /// <code>
-        /// QueryService<Customer> customerContext=new QueryService<Customer>(serviceContext);
-        /// string query = this.customerContext.Where(c => c.MiddleName.StartsWith("a") && c.FamilyName.EndsWith("z")).ToIdsQuery();
+        /// QueryService&lt;Customer&gt; customerContext=new QueryService&lt;Customer&gt;(serviceContext);
+        /// string query = this.customerContext.Where(c => c.MiddleName.StartsWith("a") &amp;&amp; c.FamilyName.EndsWith("z")).ToIdsQuery();
         /// </code>
         public void Add(string query, string id, List<String> optionsData)
         {
@@ -247,8 +247,8 @@ namespace Intuit.Ipp.DataService
         /// Please refer online documentation more details.
         /// </example>
         /// <code>
-        /// QueryService<Customer> customerContext=new QueryService<Customer>(serviceContext);
-        /// string query = this.customerContext.Where(c => c.MiddleName.StartsWith("a") && c.FamilyName.EndsWith("z")).ToIdsQuery();
+        /// QueryService&lt;Customer&gt; customerContext=new QueryService&lt;Customer&gt;(serviceContext);
+        /// string query = this.customerContext.Where(c => c.MiddleName.StartsWith("a") &amp;&amp; c.FamilyName.EndsWith("z")).ToIdsQuery();
         /// </code>
         public void Add(CDCQuery query, string id)
         {
@@ -267,8 +267,8 @@ namespace Intuit.Ipp.DataService
         /// Please refer online documentation more details.
         /// </example>
         /// <code>
-        /// QueryService<Customer> customerContext=new QueryService<Customer>(serviceContext);
-        /// string query = this.customerContext.Where(c => c.MiddleName.StartsWith("a") && c.FamilyName.EndsWith("z")).ToIdsQuery();
+        /// QueryService&lt;Customer&gt; customerContext=new QueryService&lt;Customer&gt;(serviceContext);
+        /// string query = this.customerContext.Where(c => c.MiddleName.StartsWith("a") &amp;&amp; c.FamilyName.EndsWith("z")).ToIdsQuery();
         /// </code>
         public void Add(CDCQuery query, string id, List<string> optionsData)
         {
