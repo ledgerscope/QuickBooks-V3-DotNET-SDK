@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
-    <OutputPath>$(SolutionDir)\artifacts\tests</OutputPath>
+    <OutputPath>$(SolutionDir)artifacts\tests</OutputPath>
 
   </PropertyGroup>
 
