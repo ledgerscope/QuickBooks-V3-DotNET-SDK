@@ -9,9 +9,7 @@
     <Compile Remove="SecurityConstants.cs" />
     <None Remove="SecurityConstants.xml" />
   </ItemGroup>
-  <ItemGroup>
-    <PackageReference Include="System.Configuration.ConfigurationManager" Version="4.6.0" />
-  </ItemGroup>
+
   <ItemGroup>
     <ProjectReference Include="..\Intuit.Ipp.Exception\Intuit.Ipp.Exception.csproj" />
   </ItemGroup>

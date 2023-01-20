@@ -9,11 +9,6 @@
     <Compile Remove="CDMEntities\Fmsold.cs" />
     <Compile Remove="CDMEntities\Fms_backup.cs" />
   </ItemGroup>
-  
-
-  <ItemGroup>
-    <PackageReference Include="System.Configuration.ConfigurationManager" Version="4.6.0" />
-  </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\Code\Intuit.Ipp.Utility\Intuit.Ipp.Utility.csproj" />
