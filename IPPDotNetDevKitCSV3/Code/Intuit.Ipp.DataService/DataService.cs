@@ -206,12 +206,7 @@ namespace Intuit.Ipp.DataService
                 this.serviceContext.IppConfiguration.Logger.CustomLogger.Log(Diagnostics.TraceLevel.Error, string.Format(CultureInfo.InvariantCulture, Resources.ExceptionGeneratedMessage, exception.ToString()));
                 IdsExceptionManager.HandleException(exception);
             }
-
-            string resourceString = entity.GetType().Name.ToLower(CultureInfo.InvariantCulture);
-            if (resourceString == "creditcardpaymenttxn")
-            {
-                resourceString = "creditcardpayment";
-            }
+            string resourceString = getResourceString(entity);
 
             // Builds resource Uri
             string uri = string.Format(CultureInfo.InvariantCulture, "{0}/company/{1}/{2}", CoreConstants.VERSION, this.serviceContext.RealmId, resourceString);
@@ -247,6 +242,23 @@ namespace Intuit.Ipp.DataService
             IntuitResponse restResponse = (IntuitResponse)CoreHelper.GetSerializer(this.serviceContext, false).Deserialize<IntuitResponse>(response);
             this.serviceContext.IppConfiguration.Logger.CustomLogger.Log(Diagnostics.TraceLevel.Info, "Finished Executing Method Add.");
             return (T)(restResponse.AnyIntuitObject as IEntity);
+        }
+
+        private static string getResourceString<T>(T entity) where T : IEntity
+        {
+            var resourceString = typeof(T).Name;
+
+            if (typeof(T) == typeof(CreditCardPaymentTxn))
+            {
+                resourceString = nameof(CreditCardPayment);
+            }
+
+            if (typeof(T) == typeof(TaxService))
+            {
+                resourceString = nameof(TaxService) + "/" + nameof(TaxCode);
+            }
+
+            return resourceString.ToLower(CultureInfo.InvariantCulture);
         }
 
         #endregion
@@ -815,29 +827,29 @@ namespace Intuit.Ipp.DataService
             {
                 resourceString = "creditcardpayment";
             }
+          
 
+                // Convert to role base to get the Id property which is required to Find the entity.
+                IntuitEntity intuitEntity = entity as IntuitEntity;
+                if (intuitEntity == null)
+                {
+                    IdsException exception = new IdsException(Resources.EntityConversionFailedMessage);
+                    this.serviceContext.IppConfiguration.Logger.CustomLogger.Log(Diagnostics.TraceLevel.Error, string.Format(CultureInfo.InvariantCulture, Resources.ExceptionGeneratedMessage, exception.ToString()));
+                    IdsExceptionManager.HandleException(exception);
+                }
 
-            // Convert to role base to get the Id property which is required to Find the entity.
-            IntuitEntity intuitEntity = entity as IntuitEntity;
-            if (intuitEntity == null)
-            {
-                IdsException exception = new IdsException(Resources.EntityConversionFailedMessage);
-                this.serviceContext.IppConfiguration.Logger.CustomLogger.Log(Diagnostics.TraceLevel.Error, string.Format(CultureInfo.InvariantCulture, Resources.ExceptionGeneratedMessage, exception.ToString()));
-                IdsExceptionManager.HandleException(exception);
-            }
-
-            // Check whether the Id is null and throw an exception if it is null.
-            if (string.IsNullOrWhiteSpace(intuitEntity.Id) && (entity.GetType().Name != "Preferences"))
-            {
-                IdsException exception = new IdsException(Resources.EntityIdNotNullMessage, new ArgumentNullException(Resources.IdString));
-                this.serviceContext.IppConfiguration.Logger.CustomLogger.Log(Diagnostics.TraceLevel.Error, string.Format(CultureInfo.InvariantCulture, Resources.ExceptionGeneratedMessage, exception.ToString()));
-                IdsExceptionManager.HandleException(exception);
-            }
-
-            id = intuitEntity.Id;
-
-
-
+                // Check whether the Id is null and throw an exception if it is null.
+                if (string.IsNullOrWhiteSpace(intuitEntity.Id) && (entity.GetType().Name != "Preferences"))
+                {
+                    IdsException exception = new IdsException(Resources.EntityIdNotNullMessage, new ArgumentNullException(Resources.IdString));
+                    this.serviceContext.IppConfiguration.Logger.CustomLogger.Log(Diagnostics.TraceLevel.Error, string.Format(CultureInfo.InvariantCulture, Resources.ExceptionGeneratedMessage, exception.ToString()));
+                    IdsExceptionManager.HandleException(exception);
+                }
+          
+                id = intuitEntity.Id;
+            
+                
+            
 
             string uri = string.Empty;
 
@@ -903,7 +915,7 @@ namespace Intuit.Ipp.DataService
         public ReadOnlyCollection<T> FindByParentId<T>(T entity) where T : IEntity
         {
             this.serviceContext.IppConfiguration.Logger.CustomLogger.Log(Diagnostics.TraceLevel.Info, "Called Method FindByParentId.");
-
+            
             ServicesHelper.ValidateEntity(entity, serviceContext);
             ServicesHelper.ValidateEntityType(entity, "TaxClassification", serviceContext);
 
@@ -957,7 +969,7 @@ namespace Intuit.Ipp.DataService
 
             // Check whether the Level is null and throw an exception if it is null.
             ServicesHelper.ValidateId(level, serviceContext);
-
+            
             string uri = string.Empty;
             uri = string.Format(CultureInfo.InvariantCulture, "{0}/company/{1}/{2}?level={3}", CoreConstants.VERSION, this.serviceContext.RealmId, resourceString, level);
 
@@ -984,7 +996,7 @@ namespace Intuit.Ipp.DataService
             ServicesHelper.ValidateEntity(entity, serviceContext);
             string resourceString = entity.GetType().Name;
 
-            if (resourceString.ToLower(CultureInfo.InvariantCulture) == "creditcardpaymenttxn")
+           if (resourceString.ToLower(CultureInfo.InvariantCulture) == "creditcardpaymenttxn")
             {
                 resourceString = "creditcardpayment";
             }
@@ -995,7 +1007,7 @@ namespace Intuit.Ipp.DataService
                 string uri = string.Empty;
                 uri = string.Format(CultureInfo.InvariantCulture, "{0}/company/{1}/{2}", CoreConstants.VERSION, this.serviceContext.RealmId, resourceString.ToLower(CultureInfo.InvariantCulture));
 
-                entities = PrepareAndExecuteHttpRequest<T>(uri);
+                entities = PrepareAndExecuteHttpRequest<T>(uri); 
             }
             else
             {
@@ -2108,7 +2120,7 @@ namespace Intuit.Ipp.DataService
         }
 
         #endregion
-
+        
         /// <summary>
         /// Prepare Http request for Reading Tax Cassification methods
         /// </summary>
