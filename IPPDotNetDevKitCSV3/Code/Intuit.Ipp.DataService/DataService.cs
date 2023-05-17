@@ -206,12 +206,7 @@ namespace Intuit.Ipp.DataService
                 this.serviceContext.IppConfiguration.Logger.CustomLogger.Log(Diagnostics.TraceLevel.Error, string.Format(CultureInfo.InvariantCulture, Resources.ExceptionGeneratedMessage, exception.ToString()));
                 IdsExceptionManager.HandleException(exception);
             }
-
-            string resourceString = entity.GetType().Name.ToLower(CultureInfo.InvariantCulture);
-            if(resourceString == "creditcardpaymenttxn")
-            {
-                resourceString = "creditcardpayment";
-            }
+            string resourceString = getResourceString(entity);
 
             // Builds resource Uri
             string uri = string.Format(CultureInfo.InvariantCulture, "{0}/company/{1}/{2}", CoreConstants.VERSION, this.serviceContext.RealmId, resourceString);
@@ -247,6 +242,23 @@ namespace Intuit.Ipp.DataService
             IntuitResponse restResponse = (IntuitResponse)CoreHelper.GetSerializer(this.serviceContext, false).Deserialize<IntuitResponse>(response);
             this.serviceContext.IppConfiguration.Logger.CustomLogger.Log(Diagnostics.TraceLevel.Info, "Finished Executing Method Add.");
             return (T)(restResponse.AnyIntuitObject as IEntity);
+        }
+
+        private static string getResourceString<T>(T entity) where T : IEntity
+        {
+            var resourceString = typeof(T).Name;
+
+            if (typeof(T) == typeof(CreditCardPaymentTxn))
+            {
+                resourceString = nameof(CreditCardPayment);
+            }
+
+            if (typeof(T) == typeof(TaxService))
+            {
+                resourceString = nameof(TaxService) + "/" + nameof(TaxCode);
+            }
+
+            return resourceString.ToLower(CultureInfo.InvariantCulture);
         }
 
         #endregion
