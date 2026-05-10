@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Runtime.Serialization.Formatters.Binary;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Intuit.Ipp.Exception.Test
@@ -91,33 +89,6 @@ namespace Intuit.Ipp.Exception.Test
             Assert.AreEqual(target.ErrorCode, errorCode);
             Assert.AreEqual(target.Source, source);
             Assert.ReferenceEquals(target.InnerException, innerException);
-        }
-
-        /// <summary>
-        ///A test for IdsException Constructor
-        ///</summary>
-        [TestMethod()]
-        public void IdsExceptionConstructorTest2()
-        {
-            string errorMessage = "Unauthorized";
-            string errorCode = "401";
-            string source = "Intuit.Ipp.Test";
-            System.Exception innerException = new ArgumentNullException();
-            IdsException target = new IdsException(errorMessage, errorCode, source, innerException);
-            IdsException newTarget = null;
-            using (Stream s = new MemoryStream())
-            {
-                BinaryFormatter formatter = new BinaryFormatter();
-                formatter.Serialize(s, target);
-                s.Position = 0; // Reset stream position
-                newTarget = (IdsException)formatter.Deserialize(s);
-            }
-
-            Assert.IsNotNull(newTarget);
-            Assert.AreEqual(newTarget.Message, errorMessage);
-            Assert.AreEqual(newTarget.ErrorCode, errorCode);
-            Assert.AreEqual(newTarget.Source, source);
-            Assert.ReferenceEquals(newTarget.InnerException, innerException);
         }
 
         /// <summary>

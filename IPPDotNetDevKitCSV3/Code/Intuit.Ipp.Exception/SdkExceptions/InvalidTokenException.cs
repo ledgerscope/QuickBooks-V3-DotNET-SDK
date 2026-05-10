@@ -20,13 +20,11 @@
 
 namespace Intuit.Ipp.Exception
 {
-    using System.Runtime.Serialization;
     using Intuit.Ipp.Exception.Properties;
 
     /// <summary>
     /// Represents an Exception raised when an invalid token was generated.
     /// </summary>
-    [System.Serializable]
     public class InvalidTokenException : SdkException
     {
         /// <summary>
@@ -79,14 +77,5 @@ namespace Intuit.Ipp.Exception
         {
         }
         
-        /// <summary>
-        /// Initializes a new instance of the InvalidTokenException class.
-        /// </summary>
-        /// <param name="info">The System.Runtime.Serialization.SerializationInfo that holds the serialized object data about the exception being thrown.</param>
-        /// <param name="context">The System.Runtime.Serialization.StreamingContext that contains contextual information about the source or destination.</param>
-        protected InvalidTokenException(SerializationInfo info, StreamingContext context)
-            : base(info, context)
-        {
-        }
     }
 }

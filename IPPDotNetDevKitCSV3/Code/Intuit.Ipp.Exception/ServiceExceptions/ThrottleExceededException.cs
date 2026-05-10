@@ -20,12 +20,10 @@
 
 namespace Intuit.Ipp.Exception
 {
-    using System.Runtime.Serialization;
     using Intuit.Ipp.Exception.Properties;
     /// <summary>
     /// Represents an exception raised when the Throttle is Exceeded and cannot process user requests.
     /// </summary>
-    [System.Serializable]
     public class ThrottleExceededException : ServiceException
     {
         /// <summary>
@@ -78,15 +76,6 @@ namespace Intuit.Ipp.Exception
         {
         }
 
-        /// <summary>
-        /// Initializes a new instance of the ThrottleExceededException class.
-        /// </summary>
-        /// <param name="info">The System.Runtime.Serialization.SerializationInfo that holds the serialized object data about the exception being thrown.</param>
-        /// <param name="context">The System.Runtime.Serialization.StreamingContext that contains contextual information about the source or destination.</param>
-        protected ThrottleExceededException(SerializationInfo info, StreamingContext context)
-            : base(info, context)
-        {
-        }
     }
 }
 

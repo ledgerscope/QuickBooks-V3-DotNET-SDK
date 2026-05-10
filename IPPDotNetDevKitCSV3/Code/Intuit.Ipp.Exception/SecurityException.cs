@@ -23,13 +23,11 @@ namespace Intuit.Ipp.Exception
 {
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
-    using System.Runtime.Serialization;
     using Intuit.Ipp.Exception.Properties;
 
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    [System.Serializable]
     public class SecurityException : IdsException
     {
        
@@ -94,14 +92,5 @@ namespace Intuit.Ipp.Exception
         {
         }
         
-        /// <summary>
-        /// Initializes a new instance of the SecurityException class.
-        /// </summary>
-        /// <param name="info">The System.Runtime.Serialization.SerializationInfo that holds the serialized object data about the exception being thrown.</param>
-        /// <param name="context">The System.Runtime.Serialization.StreamingContext that contains contextual information about the source or destination.</param>
-        protected SecurityException(SerializationInfo info, StreamingContext context)
-            : base(info, context)
-        {
-        }
     }
 }
