@@ -16,6 +16,7 @@ namespace Intuit.Ipp.DataService.Test
     ///to contain all DataServiceTest Unit Tests
     ///</summary>
     [TestClass()]
+    [Ignore("Integration tests require external QuickBooks credentials and realm configuration.")]
     public class AsyncDataServicesQboTest
     {
         private TestContext testContextInstance;

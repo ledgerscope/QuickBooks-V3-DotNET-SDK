@@ -229,6 +229,10 @@ namespace Intuit.Ipp.Core.Test
             //OAuthRequestValidator validator = new OAuthRequestValidator("adfas", "afd", "adfas", "asdfa");
             OAuth2RequestValidator validator = new OAuth2RequestValidator("bearertoken");
             string realmId = AuthorizationKeysQBO.realmIdIAQBO;
+            if (string.IsNullOrWhiteSpace(realmId))
+            {
+                Assert.Inconclusive("Integration tests require Oauth2Keys.RealmId to be configured.");
+            }
             ServiceContext serviceContext = new ServiceContext(realmId, IntuitServicesType.QBO, validator);
             AsyncRestHandler handler = new AsyncRestHandler(serviceContext);
             string resourceUri = string.Format("v3/company/{0}/customer", serviceContext.RealmId);

@@ -25,6 +25,7 @@ namespace Intuit.Ipp.DataService.Test
     ///to contain all DataServiceTest Unit Tests
     ///</summary>
     [TestClass()]
+    [Ignore("Integration tests require external QuickBooks credentials and realm configuration.")]
     public class DataServiceQboTest
     {
         private TestContext testContextInstance;
@@ -50,7 +51,18 @@ namespace Intuit.Ipp.DataService.Test
         [ClassInitialize()]
         public static void MyClassInitialize(TestContext testContext)
         {
+            string runIntegrationTests = Environment.GetEnvironmentVariable("RUN_INTUIT_INTEGRATION_TESTS");
+            if (!string.Equals(runIntegrationTests, "true", StringComparison.OrdinalIgnoreCase))
+            {
+                Assert.Inconclusive("DataService integration tests are disabled. Set RUN_INTUIT_INTEGRATION_TESTS=true to enable.");
+            }
+
             context = Initializer.InitializeServiceContextQbo();
+            if (context == null)
+            {
+                Assert.Inconclusive("DataService integration tests require valid OAuth configuration and an active QBO realm.");
+            }
+
             dataServiceTestCases = new DataServiceTestCases(context);
             
         }

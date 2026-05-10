@@ -22,7 +22,13 @@ namespace Intuit.Ipp.Core.Test
     public class IncludeParamTest
     {
         private TestContext testContextInstance;
-        ServiceContext serviceContext = Initializer.InitializeServiceContextQbo();
+        private ServiceContext serviceContext;
+
+        [TestInitialize]
+        public void TestInitialize()
+        {
+            serviceContext = Initializer.InitializeServiceContextQbo();
+        }
 
         /// <summary>
         ///Gets or sets the test context which provides

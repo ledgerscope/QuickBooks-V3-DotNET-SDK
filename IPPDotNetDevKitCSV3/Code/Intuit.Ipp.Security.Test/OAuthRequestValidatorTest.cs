@@ -204,6 +204,7 @@ namespace Intuit.Ipp.Security.Test
         /// A test for OAuthRequestValidator Constructor 
         /// </summary>
         [TestMethod()]
+        [Ignore("Integration test requires external QuickBooks credentials and realm configuration.")]
         public void OAuthRequestValidatorConstructorTest()
         {
             
@@ -233,6 +234,7 @@ namespace Intuit.Ipp.Security.Test
         /// A test for Authorize method 
         /// </summary>
         [TestMethod()]
+        [Ignore("Integration test requires external QuickBooks credentials and realm configuration.")]
         public void AuthorizeTest()
         {
             //string accessToken = ConfigurationManager.AppSettings["AccessTokenQBO"];
@@ -254,6 +256,7 @@ namespace Intuit.Ipp.Security.Test
         /// A test for Authorize method 
         /// </summary>
         [TestMethod()]
+        [Ignore("Integration test requires external QuickBooks credentials and realm configuration.")]
         public void AuthorizeWithHeadersTest()
         {
             ServiceContext context = Initializer.InitializeServiceContextQbo();

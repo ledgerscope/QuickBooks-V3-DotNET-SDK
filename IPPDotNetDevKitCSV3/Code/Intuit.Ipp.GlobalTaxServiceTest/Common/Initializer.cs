@@ -11,6 +11,7 @@ using Intuit.Ipp.GlobalTaxService.Test.Common;
 using Intuit.Ipp.OAuth2PlatformClient;
 using Intuit.Ipp.Security;
 using Microsoft.Extensions.Configuration;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Newtonsoft.Json.Linq;
 
 namespace Intuit.Ipp.GlobalTaxService.Test.Common 
@@ -86,6 +87,11 @@ namespace Intuit.Ipp.GlobalTaxService.Test.Common
             OAuth2RequestValidator reqValidator = null;
             try
             {
+                if (string.IsNullOrWhiteSpace(AuthorizationKeysQBO.accessTokenQBO) ||
+                    string.IsNullOrWhiteSpace(AuthorizationKeysQBO.realmIdIAQBO))
+                {
+                    throw new AssertInconclusiveException("Integration tests require Oauth2Keys.AccessToken and Oauth2Keys.RealmId to be configured.");
+                }
 
                 reqValidator = new OAuth2RequestValidator(AuthorizationKeysQBO.accessTokenQBO);
                 context = new ServiceContext(AuthorizationKeysQBO.realmIdIAQBO, IntuitServicesType.QBO, reqValidator);

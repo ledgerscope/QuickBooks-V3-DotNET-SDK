@@ -10,6 +10,7 @@ using Intuit.Ipp.Exception;
 using Intuit.Ipp.OAuth2PlatformClient;
 using Intuit.Ipp.Security;
 using Microsoft.Extensions.Configuration;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
@@ -85,6 +86,12 @@ namespace Intuit.Ipp.Core.Test.Common
             OAuth2RequestValidator reqValidator = null;
             try
             {
+                if (string.IsNullOrWhiteSpace(AuthorizationKeysQBO.realmIdIAQBO) ||
+                    (status != "Invalid" && string.IsNullOrWhiteSpace(AuthorizationKeysQBO.accessTokenQBO)))
+                {
+                    throw new AssertInconclusiveException("Integration tests require Oauth2Keys.AccessToken and Oauth2Keys.RealmId to be configured.");
+                }
+
                 if(status=="Invalid")
                     reqValidator = new OAuth2RequestValidator(status);
                 else

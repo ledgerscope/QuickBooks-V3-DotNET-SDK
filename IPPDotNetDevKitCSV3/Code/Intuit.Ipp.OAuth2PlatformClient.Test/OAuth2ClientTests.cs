@@ -14,6 +14,11 @@ namespace Intuit.Ipp.OAuth2PlatformClient.Tests
     [TestClass()]
     public class OAuth2ClientTests
     {
+    private const string TestClientId = "test-client-id";
+    private const string TestClientSecret = "test-client-secret";
+    private const string TestRedirectUri = "https://example.com/callback";
+    private const string TestEnvironment = "production";
+
         //static string clientId = ConfigurationManager.AppSettings["ClientId"];
         //static string clientSecret = ConfigurationManager.AppSettings["ClientSecret"];
         //static string redirectUrl = ConfigurationManager.AppSettings["RedirectUrl"];
@@ -23,10 +28,7 @@ namespace Intuit.Ipp.OAuth2PlatformClient.Tests
         [TestMethod()]
         public void GetAuthorizationURLTest()
         {
-            ServiceContext context = Initializer.InitializeServiceContextQbo();
-            DataService.DataService service = new DataService.DataService(context);
-
-            OAuth2Client client = new OAuth2Client(AuthorizationKeysQBO.clientIdQBO,AuthorizationKeysQBO.clientSecretQBO,AuthorizationKeysQBO.redirectUrl,AuthorizationKeysQBO.appEnvironment);
+            OAuth2Client client = new OAuth2Client(TestClientId, TestClientSecret, TestRedirectUri, TestEnvironment);
             List<OidcScopes> scopes = new List<OidcScopes>();
             scopes.Add(OidcScopes.Accounting);
             scopes.Add(OidcScopes.Payment);
@@ -41,10 +43,7 @@ namespace Intuit.Ipp.OAuth2PlatformClient.Tests
         [TestMethod()]
         public void GetAuthorizationURLTest1()
         {
-            ServiceContext context = Initializer.InitializeServiceContextQbo();
-            DataService.DataService service = new DataService.DataService(context);
-            
-            OAuth2Client client = new OAuth2Client(AuthorizationKeysQBO.clientIdQBO, AuthorizationKeysQBO.clientSecretQBO, AuthorizationKeysQBO.redirectUrl, AuthorizationKeysQBO.appEnvironment);
+            OAuth2Client client = new OAuth2Client(TestClientId, TestClientSecret, TestRedirectUri, TestEnvironment);
 
             List<OidcScopes> scopes = new List<OidcScopes>();
             scopes.Add(OidcScopes.Accounting);

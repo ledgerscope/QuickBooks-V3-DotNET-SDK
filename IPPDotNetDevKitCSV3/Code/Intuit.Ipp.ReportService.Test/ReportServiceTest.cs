@@ -60,6 +60,7 @@ namespace Intuit.Ipp.ReportService.Test.Common
         /// Fec report test
         /// </summary>
         [TestMethod()]
+        [Ignore("Integration test depends on external report data and credentials.")]
         public void ExecuteGetFecReportTest()
         {
             try

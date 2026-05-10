@@ -20,8 +20,19 @@ namespace Intuit.Ipp.QueryFilter.Test
     ///</summary>
     
     [TestClass()]
+    [Ignore("Integration tests require external QuickBooks credentials and realm configuration.")]
     public class QueryServiceTest
     {
+        [ClassInitialize]
+        public static void ClassInitialize(TestContext testContext)
+        {
+            string runIntegrationTests = Environment.GetEnvironmentVariable("RUN_INTUIT_INTEGRATION_TESTS");
+            if (!string.Equals(runIntegrationTests, "true", StringComparison.OrdinalIgnoreCase))
+            {
+                Assert.Inconclusive("QueryFilter integration tests are disabled. Set RUN_INTUIT_INTEGRATION_TESTS=true to enable.");
+            }
+        }
+
         private TestContext testContextInstance;
         private ServiceContext serviceContext;
         private DateTime dateTime;

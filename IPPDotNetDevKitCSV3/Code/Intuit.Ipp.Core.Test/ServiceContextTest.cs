@@ -83,6 +83,10 @@ namespace Intuit.Ipp.Core.Test
                 //ServiceContext context = new ServiceContext(realmIdIAQbo, IntuitServicesType.QBO, oauthValidator);
                 ServiceContext context = Initializer.InitializeServiceContextQbo();
             }
+            catch (AssertInconclusiveException)
+            {
+                throw;
+            }
             catch (System.Exception ex)
             {
                 Assert.Fail(ex.Message);
@@ -173,6 +177,10 @@ namespace Intuit.Ipp.Core.Test
                 context.Timeout = 100;
                 Assert.AreEqual(100, context.Timeout);
             }
+            catch (AssertInconclusiveException)
+            {
+                throw;
+            }
             catch (System.Exception ex)
             {
                 Assert.Fail(ex.Message);
@@ -191,6 +199,10 @@ namespace Intuit.Ipp.Core.Test
                 ServiceContext context = Initializer.InitializeServiceContextQbo();
                 context.Timeout = null;
                 Assert.IsNull(context.Timeout);
+            }
+            catch (AssertInconclusiveException)
+            {
+                throw;
             }
             catch (System.Exception ex)
             {

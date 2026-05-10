@@ -158,6 +158,11 @@ namespace Intuit.Ipp.GlobalTaxService.Test
         [TestMethod()]
         public void AddTaxCodeAsyncTest()
         {
+            if (context == null)
+            {
+                Assert.Inconclusive("Integration tests require OAuth configuration and valid service context.");
+            }
+
             //GlobalTaxService taxSvc = new GlobalTaxService(context);
             //Intuit.Ipp.Data.TaxService taxCodetobeAdded = new Data.TaxService();
 

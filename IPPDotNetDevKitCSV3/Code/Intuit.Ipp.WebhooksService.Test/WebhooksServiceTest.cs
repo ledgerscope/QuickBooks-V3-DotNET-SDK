@@ -8,6 +8,8 @@ namespace Intuit.Ipp.WebhooksService.Test
 
     using Intuit.Ipp.Core;
     using Intuit.Ipp.Utility;
+    using System.Security.Cryptography;
+    using System.Text;
 
     [TestClass]
     public class WebhooksServiceTest
@@ -46,15 +48,30 @@ namespace Intuit.Ipp.WebhooksService.Test
         {
             try
             {
+                string verifierToken = webhooksServiceTestCases.VerifierToken;
+                if (string.IsNullOrWhiteSpace(verifierToken))
+                {
+                    Assert.Inconclusive("Webhooks verifier token is not configured for this environment.");
+                }
 
-                string intuitHeaderSignature ="6q+xGyMirJupwKTh2/WBl2NcdxzxqdIbk3sneKTxLWM=";
                 string payload = "{\"eventNotifications\":[{\"realmId\":\"1269959970\",\"dataChangeEvent\":{\"entities\":[{\"name\":\"Vendor\",\"id\":\"40\",\"operation\":\"Update\",\"lastUpdated\":\"2016-10-05T03:09:04.000Z\"},{\"name\":\"Customer\",\"id\":\"43\",\"operation\":\"Create\",\"lastUpdated\":\"2016-10-05T03:07:04.000Z\"}]}}]}";
+
+                string intuitHeaderSignature;
+                using (var hmac = new HMACSHA256(Encoding.UTF8.GetBytes(verifierToken)))
+                {
+                    intuitHeaderSignature = Convert.ToBase64String(hmac.ComputeHash(Encoding.UTF8.GetBytes(payload)));
+                }
+
                 bool isWebhooksOk = webhooksServiceTestCases.VerifyPayload(intuitHeaderSignature, payload);
 
                 Assert.AreEqual(isWebhooksOk, true);
 
 
 
+            }
+            catch (AssertInconclusiveException)
+            {
+                throw;
             }
             catch (System.Exception ex)
             {

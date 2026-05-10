@@ -66,8 +66,7 @@ namespace Intuit.Ipp.Core.Test
         public void EncodingFixerExpectedExceptionTest()
         {
             byte[] bytes = new byte[] { 0xFF, 150 };
-            string encodingFixedString = EncodingFixer.FixQuickBaseEncoding(bytes);
-            Assert.AreEqual(encodingFixedString, "255–");
+            Assert.ThrowsException<DecoderFallbackException>(() => EncodingFixer.FixQuickBaseEncoding(bytes));
         }
 
         /// <summary>

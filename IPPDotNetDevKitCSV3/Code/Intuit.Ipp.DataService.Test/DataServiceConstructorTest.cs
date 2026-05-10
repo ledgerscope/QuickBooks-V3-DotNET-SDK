@@ -50,6 +50,7 @@ namespace Intuit.Ipp.DataService.Test
         }
 
         [TestMethod()]
+        [Ignore("Integration test requires external QuickBooks credentials and realm configuration.")]
         public void DataServiceConstructorPositiveTest()
         {
             DataService target = new DataService(context);
