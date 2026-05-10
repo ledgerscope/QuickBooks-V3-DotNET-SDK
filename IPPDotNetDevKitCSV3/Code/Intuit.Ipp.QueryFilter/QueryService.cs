@@ -232,6 +232,11 @@ namespace Intuit.Ipp.QueryFilter
             IntuitResponse restResponse = (IntuitResponse)this.responseSerializer.Deserialize<IntuitResponse>(response);
             QueryResponse queryResponse = restResponse.AnyIntuitObject as QueryResponse;
 
+            if (queryResponse == null)
+            {
+                return new System.Collections.ObjectModel.ReadOnlyCollection<T>(new List<T>());
+            }
+
             if (idsQuery.ToLower().Contains("count(*)"))
             {
                 int totalCount = queryResponse.totalCount;
