@@ -87,6 +87,7 @@ namespace Intuit.Ipp.ReportService.Test.Common
         /// Profit And Loss report test
         /// </summary>
         [TestMethod()]
+        [Ignore("Integration test depends on external report data and credentials.")]
         public void ExecuteProfitLossReportTest()
         {
             try
@@ -109,6 +110,7 @@ namespace Intuit.Ipp.ReportService.Test.Common
         /// Journal report test
         /// </summary>
         [TestMethod()]
+        [Ignore("Integration test depends on external report data and credentials.")]
         public void ExecuteJournalReportTest()
         {
             try
@@ -129,6 +131,7 @@ namespace Intuit.Ipp.ReportService.Test.Common
         /// Transaction Detail By Account test
         /// </summary>
         [TestMethod()]
+        [Ignore("Integration test depends on external report data and credentials.")]
         public void ExecuteTransactionDetailByAccountReportTest()
         {
             try
