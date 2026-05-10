@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Runtime.Serialization.Formatters.Binary;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Intuit.Ipp.Exception.Test
@@ -93,33 +91,6 @@ namespace Intuit.Ipp.Exception.Test
             Assert.AreEqual(target.ErrorCode, errorCode);
             Assert.AreEqual(target.Element, element);
             Assert.AreEqual(target.Detail, detail);
-        }
-
-        /// <summary>
-        ///A test for IdsError Constructor
-        ///</summary>
-        [TestMethod()]
-        public void IdsErrorConstructorTest2()
-        {
-            string errorMessage = "Length exceeds limit";
-            string errorCode = "2050";
-            string element = "firstName";
-            string detail = "Length of the field exceeds 21 chars";
-            IdsError target = new IdsError(errorMessage, errorCode, element, detail);
-            IdsError newTarget = null;
-            using (Stream s = new MemoryStream())
-            {
-                BinaryFormatter formatter = new BinaryFormatter();
-                formatter.Serialize(s, target);
-                s.Position = 0; // Reset stream position
-                newTarget = (IdsError)formatter.Deserialize(s);
-            }
-
-            Assert.IsNotNull(newTarget);
-            Assert.AreEqual(newTarget.Message, errorMessage);
-            Assert.AreEqual(newTarget.ErrorCode, errorCode);
-            Assert.AreEqual(newTarget.Element, element);
-            Assert.AreEqual(newTarget.Detail, detail);
         }
 
         /// <summary>

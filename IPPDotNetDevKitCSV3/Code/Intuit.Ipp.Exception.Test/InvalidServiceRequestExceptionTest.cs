@@ -1,9 +1,6 @@
 ﻿using Intuit.Ipp.Exception;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
-using System.IO;
-using System.Runtime.Serialization.Formatters.Binary;
-using System.Runtime.Serialization;
 
 namespace Intuit.Ipp.Exception.Test
 {
@@ -92,33 +89,6 @@ namespace Intuit.Ipp.Exception.Test
             Assert.AreEqual(target.ErrorCode, errorCode);
             Assert.AreEqual(target.Source, source);
             Assert.ReferenceEquals(target.InnerException, innerException);
-        }
-
-        /// <summary>
-        ///A test for InvalidServiceRequestException Constructor
-        ///</summary>
-        [TestMethod()]
-        public void InvalidServiceRequestExceptionConstructorTest2()
-        {
-            string errorMessage = "Unauthorized";
-            string errorCode = "401";
-            string source = "Intuit.Ipp.Test";
-            System.Exception innerException = new ArgumentNullException();
-            InvalidServiceRequestException target = new InvalidServiceRequestException(errorMessage, errorCode, source, innerException);
-            InvalidServiceRequestException newTarget = null;
-            using (Stream s = new MemoryStream())
-            {
-                BinaryFormatter formatter = new BinaryFormatter();
-                formatter.Serialize(s, target);
-                s.Position = 0; // Reset stream position
-                newTarget = (InvalidServiceRequestException)formatter.Deserialize(s);
-            }
-
-            Assert.IsNotNull(newTarget);
-            Assert.AreEqual(newTarget.Message, errorMessage);
-            Assert.AreEqual(newTarget.ErrorCode, errorCode);
-            Assert.AreEqual(newTarget.Source, source);
-            Assert.ReferenceEquals(newTarget.InnerException, innerException);
         }
 
         /// <summary>

@@ -19,13 +19,11 @@
 
 namespace Intuit.Ipp.Exception
 {
-    using System.Runtime.Serialization;
     using Intuit.Ipp.Exception.Properties;
 
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    [System.Serializable]
     public class IdsError : System.Exception
     {
         /// <summary>
@@ -83,23 +81,6 @@ namespace Intuit.Ipp.Exception
         }
 
         /// <summary>
-        /// Initializes a new instance of the IdsError class.
-        /// </summary>
-        /// <param name="info">The System.Runtime.Serialization.SerializationInfo that holds the serialized object data about the exception being thrown.</param>
-        /// <param name="context">The System.Runtime.Serialization.StreamingContext that contains contextual information about the source or destination.</param>
-        protected IdsError(SerializationInfo info, StreamingContext context)
-            : base(info, context)
-        {
-            if (info != null)
-            {
-                this.errorCode = info.GetString("errorCode");
-                this.errorMessage = info.GetString("errorMessage");
-                this.element = info.GetString("element");
-                this.detail = info.GetString("detail");
-            }
-        }
-
-        /// <summary>
         /// Gets or sets Error Code.
         /// </summary>
         public string ErrorCode
@@ -148,22 +129,5 @@ namespace Intuit.Ipp.Exception
             }
         }
 
-        /// <summary>
-        /// Contains the System.Runtime.Serialization.SerializationInfo with information about the exception.
-        /// </summary>
-        /// <param name="info">The System.Runtime.Serialization.SerializationInfo that holds the serialized object data about the exception being thrown.</param>
-        /// <param name="context">The System.Runtime.Serialization.StreamingContext that contains contextual information about the source or destination.</param>
-        public override void GetObjectData(SerializationInfo info, StreamingContext context)
-        {
-            base.GetObjectData(info, context);
-
-            if (info != null)
-            {
-                info.AddValue("errorCode", this.errorCode);
-                info.AddValue("errorMessage", this.errorMessage);
-                info.AddValue("element", this.element);
-                info.AddValue("detail", this.detail);
-            }
-        }
     }
 }
